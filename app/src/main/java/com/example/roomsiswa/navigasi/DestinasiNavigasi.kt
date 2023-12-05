@@ -6,4 +6,8 @@ interface DestinasiNavigasi {
      */
     val route: String
 
+    /**
+     * String resource id yang berisi judul untuk composable
+     */
+    val titleRes: Int
 }
