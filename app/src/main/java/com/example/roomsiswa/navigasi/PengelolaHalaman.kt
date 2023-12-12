@@ -20,6 +20,7 @@ import com.example.roomsiswa.Data.Siswa
 import com.example.roomsiswa.R
 import com.example.roomsiswa.ui.Halaman.DestinasiEntry
 import com.example.roomsiswa.ui.Halaman.DestinasiHome
+import com.example.roomsiswa.ui.Halaman.DetailsDestination
 import com.example.roomsiswa.ui.Halaman.EntrySiswaScreen
 import com.example.roomsiswa.ui.Halaman.HomeScreen
 import java.security.KeyStore.Entry
@@ -54,13 +55,21 @@ fun SiswaTopAppBar(
 
 @Composable
 fun HostNavigasi(
-    navController: NavHostController, modifier: Modifier = Modifier
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+
 ) {
-    NavHost(navController=navController, startDestination = DestinasiHome.route, modifier = Modifier)
+    NavHost(
+        navController=navController,
+        startDestination = DestinasiHome.route,
+        modifier = Modifier)
     {
         composable(DestinasiHome.route) {
             HomeScreen(
-                navigateToItemEntry = {navController.navigate(DestinasiEntry.route)},
+                navigateToItemEntry = {navController.navigate(DestinasiEntry.route) },
+                onDetailClick = {
+                    navController.navigate("${DetailsDestination.route}/$it")
+                },
                 )
         }
         composable(DestinasiEntry.route){
