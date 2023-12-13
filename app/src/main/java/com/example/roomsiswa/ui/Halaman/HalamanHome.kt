@@ -50,7 +50,7 @@ object DestinasiHome : DestinasiNavigasi {
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
-    onSiswaCick: (Int) -> Unit,
+    onDetailClick: (Int) -> Unit,
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -83,8 +83,8 @@ fun HomeScreen(
             itemSiswa = uiStateSiswa.listSiswa,
             modifier = Modifier
                 .padding(innerPadding)
-                .fillMaxSize()
-            onSiswaClick = onDataClick
+                .fillMaxSize(),
+            onDetailClick = onDetailClick
         )
     }
 }
@@ -93,7 +93,8 @@ fun HomeScreen(
 fun BodyHome(
     itemSiswa: List<Siswa>,
     modifier: Modifier=Modifier,
-    onSiswaCick: (Int) -> Unit = {}
+    onSiswaCick: (Int) -> Unit = {},
+    onDetailClick: (Int) -> Unit
 ){
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -109,7 +110,8 @@ fun BodyHome(
             ListSiswa(
                 itemSiswa = itemSiswa,
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small)),
-                onItemClick = { onSiswaCick(it.id) }
+                onItemClick = { onSiswaCick(it.id) },
+                onDetailClick = onDetailClick
             )
         }
     }
@@ -119,7 +121,8 @@ fun BodyHome(
 fun ListSiswa(
     itemSiswa : List<Siswa>,
     modifier: Modifier=Modifier,
-    onItemClick: (Siswa) -> Unit
+    onItemClick: (Siswa) -> Unit,
+    onDetailClick: (Int) -> Unit
 ) {
     LazyColumn(modifier = Modifier){
         items(items = itemSiswa, key = {it.id}){
@@ -128,7 +131,10 @@ fun ListSiswa(
                 siswa = person,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_small))
-                    .clickable { onItemClick(person) }
+                    .clickable {
+                        onItemClick(person)
+                        onDetailClick(person.id)
+                    }
             )
         }
     }
