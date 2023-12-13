@@ -19,7 +19,7 @@ class EditViewModel (
     var siswaUiState by mutableStateOf(UIStateSiswa())
         private  set
 
-    private val itemId: Int = checkNotNull(savedStateHandle[ItemEditDestination.itemArgs])
+    private val itemId: Int = checkNotNull(savedStateHandle[ItemEditDestination.itemIdArg])
 
     init {
         viewModelScope.launch {
@@ -32,7 +32,7 @@ class EditViewModel (
 
     suspend fun updateSiswa(){
         if (validasiInput(siswaUiState.detailSiswa)) {
-                repositoriSiswa.updateSiswaUiState.detailSiswa.toJo())
+                repositoriSiswa.updateSiswa(siswaUiState.detailSiswa.toSiswa())
             }
             else {
                 println("Data tidak valid")
