@@ -17,7 +17,7 @@ object PenyediaViewModel {
             EntryViewModel(aplikasiSiswa().container.repositoriSiswa)
         }
         initializer {
-            DetaislViewModel(
+            DetailsViewModel(
                 createSavedStateHandle(),
                 aplikasiSiswa().container.repositoriSiswa,
             )

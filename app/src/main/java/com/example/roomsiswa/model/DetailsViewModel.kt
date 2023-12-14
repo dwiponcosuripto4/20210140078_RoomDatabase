@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class DetaislViewModel (
+class DetailsViewModel (
     savedStateHandle: SavedStateHandle,
     private val repositoriSiswa: RepositoriSiswa
 ) : ViewModel() {

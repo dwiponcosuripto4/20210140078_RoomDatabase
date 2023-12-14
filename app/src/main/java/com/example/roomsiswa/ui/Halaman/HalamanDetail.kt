@@ -38,7 +38,7 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.roomsiswa.Data.Siswa
 import com.example.roomsiswa.R
-import com.example.roomsiswa.model.DetaislViewModel
+import com.example.roomsiswa.model.DetailsViewModel
 import com.example.roomsiswa.model.ItemDetailsUiState
 import com.example.roomsiswa.model.PenyediaViewModel
 import com.example.roomsiswa.model.toSiswa
@@ -59,7 +59,7 @@ fun DetailScreen(
     navigateToEditItem: (Int) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: DetaislViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    viewModel: DetailsViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val uiState = viewModel.uiState.collectAsState()
     val coroutineScope = rememberCoroutineScope()
